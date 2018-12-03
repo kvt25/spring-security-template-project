@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  testing-framework-be:
+    image: testing-framework-be
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development
+      DB_HOST: mongo
+      DB_NAME: testing-framework
+    ports:
+    - 8080:8080
+    links:
+    - mongo
+
+  mongo:
+    image: mongo
+    ports:
+    - 27017:27017
+#    volumes:
+#    - ".:/usr/src/app"
+#    env_file:
+#    - .env
